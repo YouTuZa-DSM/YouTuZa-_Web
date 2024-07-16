@@ -1,9 +1,5 @@
 import React from "react";
-
-import {
-  ProfileImgWrap,
-  ProfileImg,
-} from "@components/image/ProfileImage.style";
+import { ProfileImgWrap, ProfileImg } from "./ProfileImage.style";
 
 function ProfileImage({ src, width, height }) {
   return (
