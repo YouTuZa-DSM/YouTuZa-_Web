@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { getToken } from "../functions/TokenManager";
 
 const BASE_URL = process.env.REACT_APP_PUBLIC_BASE_URL;
@@ -18,7 +18,7 @@ instance.interceptors.request.use(
 
     return config;
   },
-  function (error: AxiosError) {
+  function (error) {
     return Promise.reject(error);
   }
 );

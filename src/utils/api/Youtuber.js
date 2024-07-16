@@ -5,29 +5,38 @@ import { useQuery } from "react-query";
 const BASE_URL = `${process.env.REACT_APP_PUBLIC_BASE_URL}/youtuber`;
 
 export const useGetYoutuberRanking = () => {
-  return useQuery(async () => axios.get(`${BASE_URL}/top`), {
-    onSuccess: (e) => {
-      return e;
-    },
-    onError: (err) => {
-      toast.error(`개발자에게 문의해주세요.`);
-    },
-  });
+  return useQuery(
+    ["youtuber_ranking"],
+    async () => axios.get(`${BASE_URL}/top`),
+    {
+      onSuccess: (e) => {
+        console.log(e);
+        return e;
+      },
+      onError: (err) => {
+        toast.error(`개발자에게 문의해주세요.`);
+      },
+    }
+  );
 };
 
 export const useGetIncreaseYoutuber = () => {
-  return useQuery(async () => axios.get(`${BASE_URL}/increase`), {
-    onSuccess: (e) => {
-      return e;
-    },
-    onError: (err) => {
-      toast.error(`개발자에게 문의해주세요.`);
-    },
-  });
+  return useQuery(
+    ["youtuber_increase"],
+    async () => axios.get(`${BASE_URL}/increase`),
+    {
+      onSuccess: (e) => {
+        return e;
+      },
+      onError: (err) => {
+        toast.error(`개발자에게 문의해주세요.`);
+      },
+    }
+  );
 };
 
 export const useGetYoutuber = () => {
-  return useQuery(async () => axios.get(`${BASE_URL}/all`), {
+  return useQuery(["youtuber"], async () => axios.get(`${BASE_URL}/all`), {
     onSuccess: (e) => {
       return e;
     },
