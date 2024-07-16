@@ -15,7 +15,6 @@ const HeaderWrap = styled.header`
 `;
 
 const Title = styled.div`
-  margin: 0 auto;
   font-size: 3rem;
   font-weight: 600;
 `;
