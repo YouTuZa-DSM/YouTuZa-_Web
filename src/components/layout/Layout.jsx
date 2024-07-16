@@ -4,6 +4,7 @@ import FooterHomeIcon from "../../assets/icons/FooterHomeIcon";
 import FooterMyPageIcon from "../../assets/icons/FooterMyPageIcon";
 import { MainWrap, FooterWrap, BtnWrap, FooterWrapper } from "./Layout.style";
 import FooterChartIcon from "../../assets/icons/FooterChartIcon";
+import Header from "./Header/Header";
 
 function Layout({ children }) {
   const location = useLocation();
@@ -11,6 +12,19 @@ function Layout({ children }) {
   const [isHome, setIsHome] = useState(false);
   const [isChart, setIsChart] = useState(false);
   const [isMyPage, setIsMyPage] = useState(false);
+
+  const getTitle = (path) => {
+    switch (path) {
+      case "/":
+        return "홈";
+      case "/chart":
+        return "차트";
+      case "/mypage":
+        return "마이페이지";
+      default:
+        return "title";
+    }
+  };
 
   useEffect(() => {
     if (location.pathname === "/") {
@@ -36,9 +50,12 @@ function Layout({ children }) {
     }
   }, [isFooter, location.pathname]);
 
+  const title = getTitle(location.pathname);
+
   return (
     <>
       <MainWrap isFooter={isFooter}>
+        <Header title={title} left="타이틀" right="없음" />
         <Outlet />
         {children}
       </MainWrap>
