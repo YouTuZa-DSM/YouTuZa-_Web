@@ -59,3 +59,32 @@ export const useGetYoutuberDetail = (youtuberName) => {
     }
   );
 };
+
+export const useGetYoutuberChart = (youtuberName) => {
+  return useQuery(
+    async () => axios.get(`${BASE_URL}/chart?youtuber-name=${youtuberName}`),
+    {
+      onSuccess: (e) => {
+        return e;
+      },
+      onError: (err) => {
+        toast.error(`개발자에게 문의해주세요.`);
+      },
+    }
+  );
+};
+
+export const useGetYoutuberAskPrice = (youtuberName) => {
+  return useQuery(
+    async () =>
+      axios.get(`${BASE_URL}/ask-price?youtuber-name=${youtuberName}`),
+    {
+      onSuccess: (e) => {
+        return e;
+      },
+      onError: (err) => {
+        toast.error(`개발자에게 문의해주세요.`);
+      },
+    }
+  );
+};
