@@ -15,7 +15,7 @@ function Layout({ children }) {
 
   const getTitle = (path) => {
     switch (path) {
-      case "/":
+      case "/home":
         return "홈";
       case "/chart":
         return "차트";
@@ -27,7 +27,7 @@ function Layout({ children }) {
   };
 
   useEffect(() => {
-    if (location.pathname === "/") {
+    if (location.pathname === "/home") {
       setIsFooter(true);
       setIsHome(true);
       setIsChart(false);
@@ -55,7 +55,7 @@ function Layout({ children }) {
   return (
     <>
       <MainWrap isFooter={isFooter}>
-        <Header title={title} left="타이틀" right="없음" />
+        {isFooter && <Header title={title} left="타이틀" right="없음" />}
         <Outlet />
         {children}
       </MainWrap>
@@ -63,7 +63,7 @@ function Layout({ children }) {
         <FooterWrapper>
           <FooterWrap>
             <BtnWrap>
-              <Link to="/" style={{ textDecoration: "none" }}>
+              <Link to="/home" style={{ textDecoration: "none" }}>
                 <FooterHomeIcon isHome={isHome} />
                 <span style={{ color: " black" }}>홈</span>
               </Link>

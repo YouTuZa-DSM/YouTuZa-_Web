@@ -10,16 +10,13 @@ export const useUserLogin = (signData) => {
   return useMutation(async () => axios.post(`${BASE_URL}/login`, signData), {
     onSuccess: (e) => {
       localStorage.setItem("access_token", e.data.access_token);
-      toast.success("로그인을 성공하였습니다.");
+      toast.success("로그인에 성공하였습니다.");
       navigate("/home");
     },
     onError: (err) => {
       switch (err.response.status) {
-        case 400:
-          toast.error("정보를 다시 확인해주세요.");
-          break;
         case 404:
-          toast.error(`아이디와 비벌번호를 다시 확인해주세요.`);
+          toast.error(`아이디와 비밀번호를 다시 확인해주세요.`);
           break;
         default:
           toast.error(`개발자에게 문의해주세요.`);
@@ -29,14 +26,23 @@ export const useUserLogin = (signData) => {
 };
 
 export const useUserSignup = (signData) => {
+  const { name, account_id, password } = signData;
   const navigate = useNavigate();
-  return useMutation(async () => axios.post(`${BASE_URL}/signup`, signData), {
-    onSuccess: (e) => {
-      toast.success("회원가입에 성공하였습니다.");
-      navigate("/login");
-    },
-    onError: (err) => {
-      toast.error(`개발자에게 문의해주세요.`);
-    },
-  });
+  return useMutation(
+    async () =>
+      axios.post(`${BASE_URL}/signup`, {
+        name: name,
+        account_id: account_id,
+        password: password,
+      }),
+    {
+      onSuccess: (e) => {
+        toast.success("회원가입에 성공하였습니다. 로그인해주세요.");
+        navigate("/");
+      },
+      onError: (err) => {
+        toast.error(`개발자에게 문의해주세요.`);
+      },
+    }
+  );
 };
