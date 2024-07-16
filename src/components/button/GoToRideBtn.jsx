@@ -1,21 +1,11 @@
-import styled from '@emotion/styled';
-import { Mixpanel } from 'mixpanel';
-import Link from 'next/link';
+import styled from "@emotion/styled";
+import React from "react";
+import { Link } from "react-router-dom";
 
-type Props = {
-  content: string;
-};
-
-function GoToRideButton(props: Props) {
+function GoToRideButton(props) {
   const { content } = props;
 
-  const onGoToRide = () => {
-    Mixpanel.track('탑승하러 가기', {
-      type: 'button',
-      event: 'click',
-      page: 'home',
-    });
-  };
+  const onGoToRide = () => {};
 
   return (
     <Link href="/#realtime-chart" passHref>
