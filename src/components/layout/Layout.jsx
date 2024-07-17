@@ -24,7 +24,7 @@ function Layout({ children }) {
       case "/mypage":
         return "마이페이지";
       case "/chatbot":
-        return "챗봇"
+        return "챗봇";
       default:
         return "title";
     }
@@ -54,7 +54,7 @@ function Layout({ children }) {
       setIsHome(false);
       setIsChart(false);
       setIsChatBot(true);
-      setIsMyPage(true);
+      setIsMyPage(false);
     } else {
       setIsFooter(false);
       setIsHome(false);
@@ -90,7 +90,7 @@ function Layout({ children }) {
             </BtnWrap>
             <BtnWrap>
               <Link to="/chatbot" style={{ textDecoration: "none" }}>
-                <FooterChatBotIcon isChatBot={isChart} />
+                <FooterChatBotIcon isChatBot={isChatBot} />
                 <span style={{ color: "black" }}>챗봇</span>
               </Link>
             </BtnWrap>
