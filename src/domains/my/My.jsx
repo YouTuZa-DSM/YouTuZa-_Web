@@ -11,10 +11,10 @@ function My() {
   return (
     <MyContainer>
       <ProfileWrapper
-        onClick={!!getToken() ? () => navigate("/") : removeToken()}
+        onClick={!getToken() ? () => removeToken() : navigate("/")}
       >
         <ProfileImage src={deafultImage} width={120} height={120} />
-        <Nickname>{!!getToken() ? "로그인 해주세요" : "이름"}</Nickname>
+        <Nickname>{!getToken() ? "이름" : "로그인 해주세요"}</Nickname>
       </ProfileWrapper>
       <Bar />
       <Coin />
