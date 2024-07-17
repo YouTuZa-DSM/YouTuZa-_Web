@@ -5,6 +5,7 @@ import ChartPage from "./pages/Chart";
 import MypagePage from "./pages/Mypage";
 import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup";
+import DetailPage from "./pages/Detail";
 
 export const Router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const Router = createBrowserRouter([
       {
         path: "/mypage",
         element: <MypagePage />,
+      },
+      {
+        path: "/youtuber/:name",
+        element: <DetailPage />,
       },
     ],
   },

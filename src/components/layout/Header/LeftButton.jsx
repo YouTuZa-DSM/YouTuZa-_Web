@@ -15,7 +15,7 @@ function LeftButton({ left, isPainted, title }) {
       ) : left === "뒤로가기" ? (
         <BackButton isPainted={isPainted} />
       ) : left === "타이틀" ? (
-        title && <Title>{title}</Title>
+        title && <Title type="normal">{title}</Title>
       ) : (
         <></>
       )}

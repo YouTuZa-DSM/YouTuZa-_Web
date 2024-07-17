@@ -1,5 +1,7 @@
+import _Chart from "../domains/chart/Chart";
+
 const ChartPage = () => {
-  return <div></div>;
+  return <_Chart />;
 };
 
 export default ChartPage;

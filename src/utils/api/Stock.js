@@ -1,15 +1,15 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useQuery } from "react-query";
+import { useMutation } from "react-query";
 
 const BASE_URL = `${process.env.REACT_APP_PUBLIC_BASE_URL}/stock`;
 
-export const useBuyYoutuberStock = (request) => {
-  const { youtubeName, purchasesCount } = request;
-  return useQuery(
-    async () =>
+export const useBuyYoutuberStock = () => {
+  return useMutation(
+    ["buy"],
+    async ({ youtubeName, purchasesCount, price }) =>
       axios.post(
-        `${BASE_URL}/buy?youtube-name=${youtubeName}&purchases-count=${purchasesCount}`
+        `${BASE_URL}/buy?youtube-name=${youtubeName}&purchases-count=${purchasesCount}&price=${price}`
       ),
     {
       onSuccess: (e) => {
@@ -28,12 +28,12 @@ export const useBuyYoutuberStock = (request) => {
   );
 };
 
-export const useSellYoutuberStock = (request) => {
-  const { youtubeName, purchasesCount } = request;
-  return useQuery(
-    async () =>
+export const useSellYoutuberStock = () => {
+  return useMutation(
+    ["sell"],
+    async ({ youtubeName, purchasesCount, price }) =>
       axios.post(
-        `${BASE_URL}/sell?youtube-name=${youtubeName}&purchases-count=${purchasesCount}`
+        `${BASE_URL}/buy?youtube-name=${youtubeName}&purchases-count=${purchasesCount}&price=${price}`
       ),
     {
       onSuccess: (e) => {

@@ -17,6 +17,7 @@ const HeaderWrap = styled.header`
 const Title = styled.div`
   font-size: 3rem;
   font-weight: 600;
+  width: max-content;
 `;
 
 export { HeaderWrap, Title };

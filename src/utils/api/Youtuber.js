@@ -48,6 +48,7 @@ export const useGetYoutuber = () => {
 
 export const useGetYoutuberDetail = (youtuberName) => {
   return useQuery(
+    ["youtuber_detail", youtuberName],
     async () => axios.get(`${BASE_URL}/details?youtuber-name=${youtuberName}`),
     {
       onSuccess: (e) => {
@@ -76,6 +77,7 @@ export const useGetYoutuberChart = (youtuberName) => {
 
 export const useGetYoutuberAskPrice = (youtuberName) => {
   return useQuery(
+    ["asking_price", youtuberName],
     async () =>
       axios.get(`${BASE_URL}/ask-price?youtuber-name=${youtuberName}`),
     {

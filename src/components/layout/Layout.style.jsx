@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 const MainWrap = styled.div`
   margin: 0 auto;
   background-color: ${(props) => props.theme.colors.basic.white};
-  padding: 0 2.4rem;
+  padding: 0 2.4rem 12rem;
   width: min(480px, 100%);
   min-height: ${(props) => (props.isFooter ? "calc(100vh - 8rem)" : "100vh")};
 `;

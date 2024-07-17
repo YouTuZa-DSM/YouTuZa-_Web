@@ -1,7 +1,7 @@
-import Header from "../components/layout/Header/Header";
+import My from "../domains/my/My";
 
 const MypagePage = () => {
-  return <div></div>;
+  return <My />;
 };
 
 export default MypagePage;
