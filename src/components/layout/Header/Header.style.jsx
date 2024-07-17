@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 const HeaderWrap = styled.header`
   display: flex;
-  position: sticky;
+
   top: 0;
   align-items: center;
   z-index: 100;

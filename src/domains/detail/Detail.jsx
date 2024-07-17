@@ -31,6 +31,7 @@ const Detail = () => {
       currentPrice={asking?.data?.current_price}
     />,
     <Graph data={detail?.data?.price_history} />,
+    <div>123</div>,
   ]);
 
   return (
@@ -69,6 +70,15 @@ const Detail = () => {
           }}
         >
           차트
+        </button>
+        <button
+          onClick={() => setCurrenIndex(2)}
+          style={{
+            borderBottom: currentIndex === 2 ? "1px solid black" : "none",
+            padding: "10px 15px",
+          }}
+        >
+          토론
         </button>
       </TabMenu>
       {currentTab}

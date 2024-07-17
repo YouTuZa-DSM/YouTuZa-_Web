@@ -6,7 +6,6 @@ const OrderBookWrapper = styled.div`
   margin-top: 20px;
   position: relative;
   margin-top: 20px;
-  z-index: 999;
 `;
 
 const OrderBookTable = styled.table`

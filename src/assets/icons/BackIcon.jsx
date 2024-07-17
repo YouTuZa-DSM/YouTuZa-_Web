@@ -1,12 +1,13 @@
 import { memo } from "react";
 
-const BackIcon = ({ fill }) => {
+const BackIcon = ({ fill, style }) => {
   return (
     <svg
       width="36"
       height="36"
       viewBox="0 0 24 25"
       fill="none"
+      style={style}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

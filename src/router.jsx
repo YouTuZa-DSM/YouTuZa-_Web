@@ -6,6 +6,7 @@ import MypagePage from "./pages/Mypage";
 import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup";
 import DetailPage from "./pages/Detail";
+import WalletPage from "./pages/Wallet";
 
 export const Router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const Router = createBrowserRouter([
       {
         path: "/mypage",
         element: <MypagePage />,
+      },
+      {
+        path: "/mypage/wallet",
+        element: <WalletPage />,
       },
       {
         path: "/youtuber/:name",

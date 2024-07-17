@@ -18,14 +18,23 @@ const YoutuberChart = (props) => {
         <ProfileImage src={img ? img : defaultImage} width={36} height={36} />
         <div>
           <YoutuberName>{name}</YoutuberName>
-          <RisingScoreChangePercent
-            scoreChangedStatus={priceChange >= 0 ? "up" : "down"}
-          >
-            {priceChange} %
-          </RisingScoreChangePercent>
+          {priceChange != undefined && (
+            <RisingScoreChangePercent
+              scoreChangedStatus={priceChange >= 0 ? "up" : "down"}
+            >
+              {priceChange} %
+            </RisingScoreChangePercent>
+          )}
         </div>
       </YoutuberInfo>
-      <YoutuberCoin>{price} YOU</YoutuberCoin>
+      <div>
+        <YoutuberCoin
+          style={{ fontSize: "1.3rem", fontWeight: 500, paddingRight: 5 }}
+        >
+          {price}
+        </YoutuberCoin>
+        <YoutuberCoin>YOU</YoutuberCoin>
+      </div>
     </YoutuberChartBox>
   );
 };
