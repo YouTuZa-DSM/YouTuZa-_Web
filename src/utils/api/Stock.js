@@ -1,18 +1,21 @@
-import axios from "axios";
 import toast from "react-hot-toast";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
+import instance from "../axios";
 
 const BASE_URL = `${process.env.REACT_APP_PUBLIC_BASE_URL}/stock`;
 
-export const useBuyYoutuberStock = () => {
+export const useBuyYoutuberStock = (name) => {
+  const query = useQueryClient();
   return useMutation(
     ["buy"],
     async ({ youtubeName, purchasesCount, price }) =>
-      axios.post(
+      instance.post(
         `${BASE_URL}/buy?youtube-name=${youtubeName}&purchases-count=${purchasesCount}&price=${price}`
       ),
     {
       onSuccess: (e) => {
+        query.invalidateQueries(["asking_price", name]);
+        query.invalidateQueries(["youtuber_detail", name]);
         return e;
       },
       onError: (err) => {
@@ -28,15 +31,18 @@ export const useBuyYoutuberStock = () => {
   );
 };
 
-export const useSellYoutuberStock = () => {
+export const useSellYoutuberStock = (name) => {
+  const query = useQueryClient();
   return useMutation(
     ["sell"],
     async ({ youtubeName, purchasesCount, price }) =>
-      axios.post(
-        `${BASE_URL}/buy?youtube-name=${youtubeName}&purchases-count=${purchasesCount}&price=${price}`
+      instance.post(
+        `${BASE_URL}/sell?youtube-name=${youtubeName}&purchases-count=${purchasesCount}&price=${price}`
       ),
     {
       onSuccess: (e) => {
+        query.invalidateQueries(["asking_price", name]);
+        query.invalidateQueries(["youtuber_detail", name]);
         return e;
       },
       onError: (err) => {

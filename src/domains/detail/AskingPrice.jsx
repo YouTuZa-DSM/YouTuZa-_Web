@@ -47,14 +47,15 @@ function OrderBook({ name, priceList, currentPrice }) {
                   {isLower ? (
                     <>
                       <OrderBookTd></OrderBookTd>
-                      <OrderBookTd>{price}</OrderBookTd>
+                      <OrderBookTd onClick={() => handleAmountClick(price)}>
+                        {price}
+                      </OrderBookTd>
                       <OrderBookTd
                         style={{
                           textAlign: "left",
                           backgroundImage,
                           color: "#ff3c00",
                         }}
-                        onClick={() => handleAmountClick(price)}
                       >
                         {amount}
                       </OrderBookTd>
@@ -67,11 +68,12 @@ function OrderBook({ name, priceList, currentPrice }) {
                           backgroundImage,
                           color: "#0037ff ",
                         }}
-                        onClick={() => handleAmountClick(price)}
                       >
                         {amount}
                       </OrderBookTd>
-                      <OrderBookTd>{price}</OrderBookTd>
+                      <OrderBookTd onClick={() => handleAmountClick(price)}>
+                        {price}
+                      </OrderBookTd>
                       <OrderBookTd></OrderBookTd>
                     </>
                   )}

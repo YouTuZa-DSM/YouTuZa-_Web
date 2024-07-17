@@ -35,26 +35,16 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Select = styled.select`
-  margin-top: 10px;
-  padding: 8px;
-`;
-
 const BuySellModal = ({ name, price, onClose }) => {
   const [amount, setAmount] = useState(0);
-  const [action, setAction] = useState("buy");
-  const { mutate: buy } = useBuyYoutuberStock();
-  const { mutate: sell } = useSellYoutuberStock();
+  const { mutate: buy } = useBuyYoutuberStock(name);
+  const { mutate: sell } = useSellYoutuberStock(name);
 
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
   };
 
-  const handleActionChange = (e) => {
-    setAction(e.target.value);
-  };
-
-  const handleConfirm = () => {
+  const handleConfirm = (action) => {
     if (action === "buy")
       buy({ youtubeName: name, price, purchasesCount: amount });
     else sell({ youtubeName: name, price, purchasesCount: amount });
@@ -66,7 +56,6 @@ const BuySellModal = ({ name, price, onClose }) => {
       <ModalContainer>
         <CloseButton onClick={onClose}>X</CloseButton>
         <ModalContent>
-          <h2>{action === "buy" ? "구매" : "판매"} 현재 방식</h2>
           <p>가격: {price}</p>
           <input
             type="number"
@@ -74,14 +63,9 @@ const BuySellModal = ({ name, price, onClose }) => {
             value={amount}
             onChange={handleAmountChange}
           />
-          <Select value={action} onChange={handleActionChange}>
-            <option value="buy">매수</option>
-            <option value="sell">매도</option>
-          </Select>
-          <Button onClick={handleConfirm}>
-            {action === "buy" ? "구매" : "판매"} 확인
-          </Button>
           <Button onClick={onClose}>취소</Button>
+          <Button onClick={() => handleConfirm("buy")}>매수</Button>
+          <Button onClick={() => handleConfirm("sell")}>매도</Button>
         </ModalContent>
       </ModalContainer>
     </Modal>

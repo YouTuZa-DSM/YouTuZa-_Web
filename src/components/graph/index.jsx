@@ -9,7 +9,6 @@ import {
 } from "recharts";
 
 const Graph = ({ data }) => {
-  // data가 유효한지 확인하고, 유효하지 않으면 빈 객체 사용
   const validData = data || {};
 
   const chartData = Object.keys(validData).map((key) => ({

@@ -13,13 +13,10 @@ import {
   useGetYoutuberDetail,
 } from "../../utils/api/Youtuber";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import Graph from "../../components/graph";
 
 const Detail = () => {
   const location = useLocation("");
-  useEffect(() => {
-    console.log(location);
-  }, [location.key]);
   const { data: detail } = useGetYoutuberDetail(
     location.pathname.split("/")[2]
   );
@@ -33,7 +30,7 @@ const Detail = () => {
       priceList={asking?.data?.price_list}
       currentPrice={asking?.data?.current_price}
     />,
-    <div>123</div>,
+    <Graph data={detail?.data?.price_history} />,
   ]);
 
   return (
