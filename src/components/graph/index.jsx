@@ -1,20 +1,20 @@
 import styled from "@emotion/styled/macro";
-import {
-  Legend,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import { parseTimeFromISO } from "../../utils/functions/ParseTimeFromISO";
 
 const Graph = ({ data }) => {
   const validData = data || {};
 
-  const chartData = Object.keys(validData).map((key) => ({
-    time: key,
-    value: validData[key],
-  }));
+  const chartData = Object.keys(validData).map((key) => {
+    return {
+      time: parseTimeFromISO(key),
+      value: validData[key],
+    };
+  });
+
+  const values = chartData.map((d) => d.value);
+  const minValue = Math.min(...values);
+  const maxValue = Math.max(...values);
 
   return (
     <Container>
@@ -28,8 +28,7 @@ const Graph = ({ data }) => {
             strokeWidth={2}
           />
           <XAxis dataKey="time" />
-          <YAxis />
-          <Legend />
+          <YAxis domain={[minValue - 50, maxValue + 50]} />
         </LineChart>
       </ResponsiveContainer>
     </Container>
