@@ -14,15 +14,16 @@ import {
 } from "../../utils/api/Youtuber";
 import { useLocation } from "react-router-dom";
 import Graph from "../../components/graph";
+import { useGetYoutuberComment } from "../../utils/api/Comment";
+import Comment from "../../components/comment/Comment";
+import WriteComment from "../../components/comment/WriteComment";
 
 const Detail = () => {
   const location = useLocation("");
-  const { data: detail } = useGetYoutuberDetail(
-    location.pathname.split("/")[2]
-  );
-  const { data: asking } = useGetYoutuberAskPrice(
-    location.pathname.split("/")[2]
-  );
+  const YOUTUBER = location.pathname.split("/")[2];
+  const { data: detail } = useGetYoutuberDetail(YOUTUBER);
+  const { data: asking } = useGetYoutuberAskPrice(YOUTUBER);
+  const { data: comments } = useGetYoutuberComment(YOUTUBER);
 
   const [currentIndex, currentTab, setCurrenIndex] = useTabs(0, [
     <OrderBook
@@ -31,7 +32,19 @@ const Detail = () => {
       currentPrice={asking?.data?.current_price}
     />,
     <Graph data={detail?.data?.price_history} />,
-    <div>123</div>,
+    <>
+      <WriteComment youtuber={YOUTUBER} />
+      {Array.isArray(comments?.data) && comments?.data.length > 0 ? (
+        comments.data.map((comment, index) => {
+          const { title, name, content } = comment;
+          return (
+            <Comment key={index} title={title} name={name} content={content} />
+          );
+        })
+      ) : (
+        <p>댓글이 없습니다.</p>
+      )}
+    </>,
   ]);
 
   return (
