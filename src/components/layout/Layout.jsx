@@ -5,12 +5,14 @@ import FooterMyPageIcon from "../../assets/icons/FooterMyPageIcon";
 import { MainWrap, FooterWrap, BtnWrap, FooterWrapper } from "./Layout.style";
 import FooterChartIcon from "../../assets/icons/FooterChartIcon";
 import Header from "./Header/Header";
+import FooterChatBotIcon from "../../assets/icons/FooterChatBot";
 
 function Layout({ children }) {
   const location = useLocation();
   const [isFooter, setIsFooter] = useState(false);
   const [isHome, setIsHome] = useState(false);
   const [isChart, setIsChart] = useState(false);
+  const [isChatBot, setIsChatBot] = useState(false);
   const [isMyPage, setIsMyPage] = useState(false);
 
   const getTitle = (path) => {
@@ -21,6 +23,8 @@ function Layout({ children }) {
         return "차트";
       case "/mypage":
         return "마이페이지";
+      case "/chatbot":
+        return "챗봇"
       default:
         return "title";
     }
@@ -30,21 +34,31 @@ function Layout({ children }) {
     if (location.pathname === "/home") {
       setIsFooter(true);
       setIsHome(true);
+      setIsChatBot(false);
       setIsChart(false);
       setIsMyPage(false);
     } else if (location.pathname === "/chart") {
       setIsFooter(true);
       setIsHome(false);
       setIsChart(true);
+      setIsChatBot(false);
       setIsMyPage(false);
     } else if (location.pathname === "/mypage") {
       setIsFooter(true);
       setIsHome(false);
+      setIsChatBot(false);
       setIsChart(false);
+      setIsMyPage(true);
+    } else if (location.pathname === "/chatbot") {
+      setIsFooter(true);
+      setIsHome(false);
+      setIsChart(false);
+      setIsChatBot(true);
       setIsMyPage(true);
     } else {
       setIsFooter(false);
       setIsHome(false);
+      setIsChatBot(false);
       setIsChart(false);
       setIsMyPage(false);
     }
@@ -72,6 +86,12 @@ function Layout({ children }) {
               <Link to="/chart" style={{ textDecoration: "none" }}>
                 <FooterChartIcon isChart={isChart} />
                 <span style={{ color: " black" }}>차트</span>
+              </Link>
+            </BtnWrap>
+            <BtnWrap>
+              <Link to="/chatbot" style={{ textDecoration: "none" }}>
+                <FooterChatBotIcon isChatBot={isChart} />
+                <span style={{ color: "black" }}>챗봇</span>
               </Link>
             </BtnWrap>
             <BtnWrap>

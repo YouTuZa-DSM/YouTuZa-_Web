@@ -29,7 +29,7 @@ const WalletPage = () => {
               </div>
               <div>
                 <Kind>수익률</Kind>
-                <Kind>{e.rate_of_return}</Kind>
+                <Kind>{e.rate_of_return} %</Kind>
               </div>
             </History>
           </WalletWrapper>
