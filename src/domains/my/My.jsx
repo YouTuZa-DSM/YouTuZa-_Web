@@ -31,13 +31,20 @@ function My() {
             <Nickname>{data?.data?.username}</Nickname>
           )}
         </ProfileWrapper>
-        <Coin coin={data?.data ? data?.data?.coin : 0} />
+        <Coin coin={getToken ? data?.data?.coin : 0} />
         <Bar />
       </MyWrapper>
       <AuthButtonWrapper>
         <SubTitle type="normal">회원가입 하면 1000 YOU 지급!</SubTitle>
         <AuthButton
-          onClick={!getToken() ? () => navigate("/") : () => removeToken()}
+          onClick={
+            !getToken()
+              ? () => navigate("/login")
+              : () => {
+                  navigate("/");
+                  removeToken();
+                }
+          }
         >
           {!getToken() ? "로그인" : "로그아웃"}
         </AuthButton>

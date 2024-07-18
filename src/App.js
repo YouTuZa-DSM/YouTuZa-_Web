@@ -7,7 +7,7 @@ const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        keepPreviousData: true,
+        keepPreviousData: false,
         refetchOnWindowFocus: true,
         refetchOnMount: true,
         staleTime: 60000,
@@ -18,7 +18,6 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Toaster />
       <RouterProvider router={Router} />
     </QueryClientProvider>
   );

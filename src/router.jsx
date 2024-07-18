@@ -13,10 +13,10 @@ export const Router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
-      { path: "/", element: <LoginPage /> },
+      { path: "/login", element: <LoginPage /> },
       { path: "/signup", element: <SignupPage /> },
       {
-        path: "/home",
+        path: "/",
         element: <HomePage />,
       },
       {

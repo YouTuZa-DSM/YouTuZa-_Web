@@ -17,7 +17,7 @@ function Layout({ children }) {
 
   const getTitle = (path) => {
     switch (path) {
-      case "/home":
+      case "/":
         return "홈";
       case "/chart":
         return "차트";
@@ -31,7 +31,7 @@ function Layout({ children }) {
   };
 
   useEffect(() => {
-    if (location.pathname === "/home") {
+    if (location.pathname === "/") {
       setIsFooter(true);
       setIsHome(true);
       setIsChatBot(false);
@@ -77,7 +77,7 @@ function Layout({ children }) {
         <FooterWrapper>
           <FooterWrap>
             <BtnWrap>
-              <Link to="/home" style={{ textDecoration: "none" }}>
+              <Link to="/" style={{ textDecoration: "none" }}>
                 <FooterHomeIcon isHome={isHome} />
                 <span style={{ color: " black" }}>홈</span>
               </Link>

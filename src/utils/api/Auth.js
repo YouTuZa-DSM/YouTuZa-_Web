@@ -11,7 +11,7 @@ export const useUserLogin = (signData) => {
     onSuccess: (e) => {
       localStorage.setItem("access_token", e.data.access_token);
       toast.success("로그인에 성공하였습니다.");
-      navigate("/home");
+      navigate("/");
     },
     onError: (err) => {
       switch (err.response.status) {

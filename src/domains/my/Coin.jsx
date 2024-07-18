@@ -1,12 +1,15 @@
 import styled from "@emotion/styled";
 import BackIcon from "../../assets/icons/BackIcon";
 import { useNavigate } from "react-router-dom";
+import { getToken } from "../../utils/functions/TokenManager";
 
 const Coin = ({ coin }) => {
   const navigate = useNavigate();
   return (
-    <CoinWrapper onClick={() => navigate("/mypage/wallet")}>
-      {coin} YOU
+    <CoinWrapper
+      onClick={getToken ? () => navigate("/mypage/wallet") : () => {}}
+    >
+      {getToken ? coin : 0} YOU
       <BackIcon fill="white" style={{ transform: "rotate(180deg)" }} />
     </CoinWrapper>
   );

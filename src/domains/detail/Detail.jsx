@@ -34,8 +34,9 @@ const Detail = () => {
     <Graph data={detail?.data?.price_history} />,
     <>
       <WriteComment youtuber={YOUTUBER} />
-      {Array.isArray(comments?.data) && comments?.data.length > 0 ? (
-        comments.data.map((comment, index) => {
+      {Array.isArray(comments) && comments?.length > 0 ? (
+        comments.map((comment, index) => {
+          console.log(comment);
           const { title, name, content } = comment;
           return (
             <Comment key={index} title={title} name={name} content={content} />
